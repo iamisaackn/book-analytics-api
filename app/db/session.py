@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.config import settings
 
-# SQLite for local/demo — swap DATABASE_URL env var for MySQL/PostgreSQL in production
+
 engine = create_engine(
     settings.DATABASE_URL,
     # SQLite needs this for multi-threaded use (FastAPI runs async workers)

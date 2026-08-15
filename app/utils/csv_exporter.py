@@ -1,15 +1,13 @@
 # reusable CSV streaming utility
 """
-Reusable CSV export utility.
-
 Usage in any service:
     from app.utils.csv_exporter import dataframe_to_csv_response
     return dataframe_to_csv_response(df, "Report_Name", column_map={...})
 
 Adding CSV export to a new endpoint = 3 steps:
-    1. repo    → add fetch_all_X()          (no LIMIT/OFFSET)
-    2. service → add export_X_csv()         (call fetch_all, pass column_map)
-    3. endpoint → add GET /X/export route   (same filters, no pagination)
+    1. repo → add fetch_all_X() (no LIMIT/OFFSET)
+    2. service → add export_X_csv() (call fetch_all, pass column_map)
+    3. endpoint → add GET /X/export route (same filters, no pagination)
 """
 import io
 from datetime import datetime
@@ -33,9 +31,9 @@ def dataframe_to_csv_response(
     Converts a pandas DataFrame to a streaming CSV download response.
 
     Args:
-        df:           Full dataset DataFrame (no pagination).
+        df: Full dataset DataFrame (no pagination).
         report_name:  Used in the downloaded filename.
-        column_map:   Optional — maps DataFrame column names to human-readable CSV headers.
+        column_map: Optional — maps DataFrame column names to human-readable CSV headers.
                       e.g. {"book_id": "Book ID", "full_name": "Full Name"}
     """
     if column_map:

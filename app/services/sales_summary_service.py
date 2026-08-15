@@ -6,11 +6,11 @@ from app.schemas.sales_summary import SalesSummaryPage, SalesSummaryRow
 from app.utils.csv_exporter import dataframe_to_csv_response
 
 _CSV_COLUMN_MAP = {
-    "genre":         "Genre",
-    "total_sales":   "Total Sales",
+    "genre": "Genre",
+    "total_sales": "Total Sales",
     "total_revenue": "Total Revenue",
-    "avg_price":     "Avg Price",
-    "segment":       "Revenue Segment",
+    "avg_price": "Avg Price",
+    "segment": "Revenue Segment",
 }
 
 
