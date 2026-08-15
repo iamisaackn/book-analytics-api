@@ -1,12 +1,8 @@
-# 📚 Book Analytics API
+# Book Analytics API
 
-A production-style analytics REST API built with **FastAPI**, demonstrating clean architecture, JWT-style authentication, CSV export, containerisation, and CI/CD deployment to Kubernetes.
+A production-style analytics built with **FastAPI**, demonstrating clean architecture, JWT-style authentication, CSV export, containerisation, and CI/CD deployment to Kubernetes.
 
-> Built as a portfolio project to showcase backend engineering skills.
-
----
-
-## 🏗️ Architecture
+## Architecture
 
 ```
 Request → API Key Auth → Endpoint → Service → Repository → SQLite/DB
@@ -27,20 +23,18 @@ Request → API Key Auth → Endpoint → Service → Repository → SQLite/DB
 | `utils/csv_exporter.py` | Reusable CSV streaming utility |
 | `core/security.py` | API key auth (drop-in replacement for JWT) |
 
----
-
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_USERNAME/book-analytics-api.git
+git clone https://github.com/iamisaackn/book-analytics-api.git
 cd book-analytics-api
 
 # Install
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements/dev.txt
 
-# Seed demo data
+# Seed data
 python scripts/seed.py
 
 # Run
@@ -65,26 +59,20 @@ Open **http://localhost:8000/api/docs** — use `X-API-Key: dev-api-key-change-i
 
 All endpoints except `/actuator/health` require: `X-API-Key: <your-key>`
 
----
-
-## 🐳 Docker
+## Docker
 
 ```bash
 docker compose up --build
 # API available at http://localhost:8000/api/docs
 ```
 
----
-
-## ✅ Tests
+## Tests
 
 ```bash
 pytest tests/ -v --cov=app --cov-report=term-missing
 ```
 
----
-
-## 🔧 Key Skills Demonstrated
+## Key Skills Demonstrated
 
 - **FastAPI** — layered architecture, dependency injection, Pydantic validation
 - **SQLAlchemy + pandas** — parameterised SQL, DataFrame-based data pipeline
