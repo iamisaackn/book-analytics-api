@@ -1,0 +1,14 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: book-analytics-api
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: local
+      API_KEY: dev-api-key-change-in-production
+      DATABASE_URL: sqlite:////app/book_analytics.db
+      GUNICORN_WORKERS: 2
+    restart: unless-stopped

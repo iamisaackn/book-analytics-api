@@ -1,0 +1,18 @@
+replicas: 1
+imagePullPolicy: Always
+
+app:
+  image: YOUR_DOCKERHUB_USERNAME/book-analytics-api
+  imageTag: latest
+  port: 8000
+  name: book-analytics-api
+  dep: book-analytics-server
+  con: book-analytics-container
+  svc: book-analytics-service
+
+podAnnotations:
+  rollme: ""
+
+env:
+  API_KEY: "change-in-production"
+  DATABASE_URL: "sqlite:////app/book_analytics.db"
