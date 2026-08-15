@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1
-# ── Stage 1: dependency builder ──────────────────────────────────────────────
+# Stage 1: dependency builder
 FROM python:3.13-slim AS builder
 RUN pip install --upgrade pip
 WORKDIR /build
 COPY requirements/prod.txt .
 RUN pip install --no-cache-dir --prefix=/install -r prod.txt
 
-# ── Stage 2: lean runtime image ──────────────────────────────────────────────
+# Stage 2: lean runtime image
 FROM python:3.13-slim AS runtime
 
 ARG GIT_COMMIT=unknown

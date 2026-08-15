@@ -6,12 +6,12 @@ from app.schemas.top_borrowers import TopBorrowerPage, TopBorrowerRow
 from app.utils.csv_exporter import dataframe_to_csv_response
 
 _CSV_COLUMN_MAP = {
-    "member_id":       "Member ID",
-    "full_name":       "Full Name",
-    "email":           "Email",
-    "total_borrowed":  "Total Borrowed",
-    "total_returned":  "Total Returned",
-    "total_overdue":   "Total Overdue",
+    "member_id": "Member ID",
+    "full_name": "Full Name",
+    "email": "Email",
+    "total_borrowed": "Total Borrowed",
+    "total_returned": "Total Returned",
+    "total_overdue": "Total Overdue",
     "favourite_genre": "Favourite Genre",
     "last_borrow_date":"Last Borrow Date",
 }

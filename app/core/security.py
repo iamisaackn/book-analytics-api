@@ -1,13 +1,4 @@
 # API key auth dependency
-"""
-API Key authentication dependency.
-
-Mirrors the JWT Bearer pattern from production — same FastAPI Depends() structure,
-same 401/403 error responses — just using a static API key instead of Keycloak
-so the project runs standalone without an IAM server.
-
-In production, swap get_current_user() for full JWT verification.
-"""
 import logging
 
 from fastapi import Depends, HTTPException, Security, status

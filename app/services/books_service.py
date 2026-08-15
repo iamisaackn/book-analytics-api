@@ -6,13 +6,13 @@ from app.schemas.books import BookPage, BookRow, BookStatus
 from app.utils.csv_exporter import dataframe_to_csv_response
 
 _CSV_COLUMN_MAP = {
-    "book_id":       "Book ID",
-    "title":         "Title",
-    "author":        "Author",
-    "genre":         "Genre",
-    "status":        "Status",
+    "book_id": "Book ID",
+    "title": "Title",
+    "author": "Author",
+    "genre": "Genre",
+    "status": "Status",
     "times_borrowed":"Times Borrowed",
-    "days_overdue":  "Days Overdue",
+    "days_overdue": "Days Overdue",
 }
 
 

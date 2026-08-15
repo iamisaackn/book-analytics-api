@@ -4,24 +4,20 @@ from sqlalchemy.orm import Session
 
 _BASE_SQL = """
     SELECT
-        b.id          AS book_id,
-        b.title       AS title,
-        b.author      AS author,
-        b.genre       AS genre,
-        b.status      AS status,
-        COUNT(br.id)  AS times_borrowed,
-        COALESCE(
-            CAST(
-                (julianday('now') - julianday(MAX(br.due_date))) AS INTEGER
-            ), 0
-        ) AS days_overdue
+        b.id AS book_id,
+        b.title AS title,
+        b.author AS author,
+        b.genre AS genre,
+        b.status AS status,
+        COUNT(br.id) AS times_borrowed,
+        COALESCE(CAST((julianday('now') - julianday(MAX(br.due_date))) AS INTEGER), 0) AS days_overdue
     FROM books b
     LEFT JOIN borrowings br ON br.book_id = b.id
     WHERE (
         :search_term IS NULL
-        OR LOWER(b.title)  LIKE '%' || LOWER(:search_term) || '%'
+        OR LOWER(b.title) LIKE '%' || LOWER(:search_term) || '%'
         OR LOWER(b.author) LIKE '%' || LOWER(:search_term) || '%'
-        OR LOWER(b.genre)  LIKE '%' || LOWER(:search_term) || '%'
+        OR LOWER(b.genre) LIKE '%' || LOWER(:search_term) || '%'
     )
     AND (:status IS NULL OR b.status = :status)
     GROUP BY b.id, b.title, b.author, b.genre, b.status

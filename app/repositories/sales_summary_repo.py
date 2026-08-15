@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 
 _BASE_SQL = """
     SELECT
-        b.genre                         AS genre,
-        COUNT(br.id)                    AS total_sales,
-        ROUND(SUM(b.price), 2)          AS total_revenue,
-        ROUND(AVG(b.price), 2)          AS avg_price,
+        b.genre AS genre,
+        COUNT(br.id) AS total_sales,
+        ROUND(SUM(b.price), 2) AS total_revenue,
+        ROUND(AVG(b.price), 2) AS avg_price,
         CASE
             WHEN PERCENT_RANK() OVER (ORDER BY SUM(b.price)) >= 0.66 THEN 'HIGH'
             WHEN PERCENT_RANK() OVER (ORDER BY SUM(b.price)) >= 0.33 THEN 'MEDIUM'

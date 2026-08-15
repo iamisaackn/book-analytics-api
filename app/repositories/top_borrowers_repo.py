@@ -4,12 +4,12 @@ from sqlalchemy.orm import Session
 
 _BASE_SQL = """
     SELECT
-        m.id                                                        AS member_id,
-        m.full_name                                                 AS full_name,
-        m.email                                                     AS email,
-        COUNT(br.id)                                                AS total_borrowed,
-        COUNT(CASE WHEN br.returned_date IS NOT NULL THEN 1 END)    AS total_returned,
-        COUNT(CASE WHEN br.status = 'OVERDUE' THEN 1 END)          AS total_overdue,
+        m.id AS member_id,
+        m.full_name AS full_name,
+        m.email AS email,
+        COUNT(br.id) AS total_borrowed,
+        COUNT(CASE WHEN br.returned_date IS NOT NULL THEN 1 END) AS total_returned,
+        COUNT(CASE WHEN br.status = 'OVERDUE' THEN 1 END) AS total_overdue,
         (
             SELECT b2.genre
             FROM borrowings br2
@@ -18,14 +18,14 @@ _BASE_SQL = """
             GROUP BY b2.genre
             ORDER BY COUNT(*) DESC
             LIMIT 1
-        )                                                           AS favourite_genre,
-        MAX(DATE(br.borrow_date))                                   AS last_borrow_date
+        ) AS favourite_genre,
+        MAX(DATE(br.borrow_date)) AS last_borrow_date
     FROM members m
     INNER JOIN borrowings br ON br.member_id = m.id
     WHERE (
         :search_term IS NULL
         OR LOWER(m.full_name) LIKE '%' || LOWER(:search_term) || '%'
-        OR LOWER(m.email)     LIKE '%' || LOWER(:search_term) || '%'
+        OR LOWER(m.email) LIKE '%' || LOWER(:search_term) || '%'
     )
     GROUP BY m.id, m.full_name, m.email
     HAVING COUNT(br.id) >= :min_borrows

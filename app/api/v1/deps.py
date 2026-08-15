@@ -1,3 +1,4 @@
+# get_db dependency
 from collections.abc import Generator
 
 from fastapi import Depends

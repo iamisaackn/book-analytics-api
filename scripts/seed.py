@@ -1,8 +1,6 @@
-# seeds SQLite with demo data
 """
-Seed the SQLite database with demo data.
-Run once before starting the server:
-    python scripts/seed.py
+Seed the SQLite database with data.
+Run once before starting the server: python scripts/seed.py
 """
 import sys
 import os
@@ -13,28 +11,28 @@ from app.db.session import engine
 
 DDL = """
 CREATE TABLE IF NOT EXISTS books (
-    id      INTEGER PRIMARY KEY AUTOINCREMENT,
-    title   TEXT NOT NULL,
-    author  TEXT NOT NULL,
-    genre   TEXT NOT NULL,
-    status  TEXT NOT NULL DEFAULT 'AVAILABLE',
-    price   REAL NOT NULL DEFAULT 9.99
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    author TEXT NOT NULL,
+    genre TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'AVAILABLE',
+    price REAL NOT NULL DEFAULT 9.99
 );
 
 CREATE TABLE IF NOT EXISTS members (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     full_name TEXT NOT NULL,
-    email     TEXT NOT NULL UNIQUE
+    email TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS borrowings (
-    id            INTEGER PRIMARY KEY AUTOINCREMENT,
-    book_id       INTEGER NOT NULL REFERENCES books(id),
-    member_id     INTEGER NOT NULL REFERENCES members(id),
-    borrow_date   TEXT NOT NULL,
-    due_date      TEXT NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    book_id INTEGER NOT NULL REFERENCES books(id),
+    member_id INTEGER NOT NULL REFERENCES members(id),
+    borrow_date TEXT NOT NULL,
+    due_date TEXT NOT NULL,
     returned_date TEXT,
-    status        TEXT NOT NULL DEFAULT 'BORROWED'
+    status TEXT NOT NULL DEFAULT 'BORROWED'
 );
 """
 
@@ -70,11 +68,11 @@ MEMBERS = [
 BORROWINGS = [
     # (book_id, member_id, borrow_date, due_date, returned_date, status)
     (1,  1, "2026-06-01", "2026-06-15", "2026-06-14", "RETURNED"),
-    (2,  1, "2026-06-20", "2026-07-04", None,         "BORROWED"),
-    (3,  1, "2026-05-01", "2026-05-15", None,         "OVERDUE"),
+    (2,  1, "2026-06-20", "2026-07-04", None, "BORROWED"),
+    (3,  1, "2026-05-01", "2026-05-15", None, "OVERDUE"),
     (5,  2, "2026-06-10", "2026-06-24", "2026-06-23", "RETURNED"),
-    (6,  2, "2026-07-01", "2026-07-15", None,         "BORROWED"),
-    (7,  2, "2026-04-01", "2026-04-15", None,         "OVERDUE"),
+    (6,  2, "2026-07-01", "2026-07-15", None, "BORROWED"),
+    (7,  2, "2026-04-01", "2026-04-15", None, "OVERDUE"),
     (9,  2, "2026-07-10", "2026-07-24", None,         "BORROWED"),
     (1,  3, "2026-05-15", "2026-05-29", "2026-05-28", "RETURNED"),
     (4,  3, "2026-06-05", "2026-06-19", "2026-06-18", "RETURNED"),
